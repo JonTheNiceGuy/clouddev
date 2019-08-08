@@ -1,0 +1,13 @@
+---
+- name: Add Repo Key
+  apt_key:
+    url: "{{ key_url }}"
+    state: present
+  when: key_url|default('') != ''
+
+- name: Add Repo Source
+  apt_repository:
+    repo: "{{ source }}"
+    state: present
+    filename: "{{ repo_source | default('source') }}"
+  when: source|default('') != ''
