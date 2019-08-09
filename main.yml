@@ -1,9 +1,15 @@
 ---
 - hosts: localhost
   tasks:
-  - include_role:
+  - name: "Add NodeJS Repo from nodesource.com"
+    include_role:
       name: extra_debian_repo
     vars:
       key_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-      repo: "deb https://deb.nodesource.com/node_0.12 {{ ansible_distribution_release }} main"
+      repo: "deb https://deb.nodesource.com/node_12.x {{ ansible_distribution_release }} main"
       repo_source: node
+  - name: "Install NodeJS"
+    apt:
+      update_cache: yes
+      name: nodejs
+      state: present

@@ -7,7 +7,7 @@
 
 - name: Add Repo Source
   apt_repository:
-    repo: "{{ source }}"
+    repo: "{{ repo }}"
     state: present
-    filename: "{{ repo_source | default('source') }}"
-  when: source|default('') != ''
+    filename: "{{ repo_source | default(omit) }}"
+  when: repo|default('') != ''
