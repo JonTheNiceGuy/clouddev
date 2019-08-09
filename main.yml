@@ -13,3 +13,7 @@
       update_cache: yes
       name: nodejs
       state: present
+  - name: Install Angular
+    npm:
+      name: "@angular/cli"
+      global: yes
